@@ -12,23 +12,30 @@ async function getWeather(city) {
 
 searchBtn.addEventListener(`click`, () => {
   getWeather(searchBox.value).then((data) => {
+    if (data.cod === "404") {
+      document.querySelector(`.error`).style.display = `block`;
+      document.querySelector(`.weather`).style.display = `none`;
+      return;
+    }
+
+    document.querySelector(`.error`).style.display = `none`;
+
     document.querySelector(`.city`).innerHTML = data.name;
-    document.querySelector(`.temp`).innerHTML =
-      Math.round(data.main.temp) + "°c";
+    document.querySelector(`.temp`).innerHTML = Math.round(data.main.temp) + "°c";
     document.querySelector(`.humidity`).innerHTML = data.main.humidity + "%";
     document.querySelector(`.wind`).innerHTML = data.wind.speed + " km/h";
 
-    if(data.weather[0].main === `Clear`) {
+    if (data.weather[0].main === `Clear`) {
       weatherIcon.src = `images/clear.png`;
-    } else if(data.weather[0].main === `Clouds`) {
+    } else if (data.weather[0].main === `Clouds`) {
       weatherIcon.src = `images/clouds.png`;
-    } else if(data.weather[0].main === `Rain`) {
+    } else if (data.weather[0].main === `Rain`) {
       weatherIcon.src = `images/rain.png`;
-    } else if(data.weather[0].main === `Drizzle`) {
+    } else if (data.weather[0].main === `Drizzle`) {
       weatherIcon.src = `images/drizzle.png`;
-    } else if(data.weather[0].main === `Mist`) {  
+    } else if (data.weather[0].main === `Mist`) {
       weatherIcon.src = `images/mist.png`;
-    } else if(data.weather[0].main === `Snow`) {
+    } else if (data.weather[0].main === `Snow`) {
       weatherIcon.src = `images/snow.png`;
     }
 
