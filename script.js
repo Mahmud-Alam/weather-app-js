@@ -10,7 +10,7 @@ async function getWeather(city) {
   return data;
 }
 
-searchBtn.addEventListener(`click`, () => {
+function handleSearch() {
   getWeather(searchBox.value).then((data) => {
     if (data.cod === "404") {
       document.querySelector(`.error`).style.display = `block`;
@@ -41,4 +41,12 @@ searchBtn.addEventListener(`click`, () => {
 
     document.querySelector(`.weather`).style.display = `block`;
   });
+}
+
+searchBtn.addEventListener(`click`, handleSearch);
+
+searchBox.addEventListener(`keydown`, (event) => {
+  if (event.key === "Enter") {
+    handleSearch();
+  }
 });
