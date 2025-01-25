@@ -52,6 +52,7 @@ footer a:hover {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 16px;
 }
 .search input{
     border: none;
@@ -61,8 +62,7 @@ footer a:hover {
     padding: 10px 25px;
     height: 60px;
     border-radius: 30px;
-    flex: 1;
-    margin-right: 16px;
+    flex-grow: 1;
     font-size: 18px;
 }
 .search button{
@@ -72,7 +72,9 @@ footer a:hover {
     border-radius: 50%;
     width: 60px;
     height: 60px;
+    aspect-ratio: 1;
     cursor: pointer;
+    flex-shrink: 0;
 }
 .search button img{
     align-items: center;
@@ -122,4 +124,39 @@ footer a:hover {
     font-size: 24px;
     font-weight: 900;
     display: none;
+}
+
+
+@media (max-width: 480px) {
+    .weather h1 {
+        font-size: 60px;
+    }
+    .weather h2 {
+        font-size: 40px;
+    }
+    .details {
+        flex-wrap: wrap;
+        gap: 60px;
+        justify-content: center;
+    }
+    .col {
+        flex-direction: column;
+        text-align: center;
+    }
+    .humidity, .wind {
+        font-size: 24px;
+        margin-top: 10px;
+    }
+    .search input {
+        padding: 8px 12px;
+        height: 45px; 
+        font-size: 14px; 
+    }
+    .search button {
+        width: 45px;
+        height: 45px;
+    }
+    .error {
+        font-size: 20px;
+    }
 }
